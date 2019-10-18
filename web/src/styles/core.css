@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "~@blueprintjs/select/lib/css/blueprint-select.css";
+@import "~@blueprintjs/table/lib/css/table.css";
+
+.group:hover .group-hover\:flex {
+    display: flex;
+}
+
+::-webkit-scrollbar{
+    width:5px;
+    height:5px;
+    border-radius:5px;
+    background-color:#f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius:5px;
+    background-color:#c0c0c0;
+}
