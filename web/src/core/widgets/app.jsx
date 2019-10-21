@@ -1,10 +1,10 @@
 import React from 'react'
 
 import ChangelogList from './widget-changelog-list'
-import ChangelogItem from './widget-changelog-item'
+// import ChangelogItem from './widget-changelog-item'
 import ChangelogTrigger from './widget-changelog-trigger'
-import CongratuBoom from './widget-congratulation-boom'
-import ReleaseNotify from './widget-release-notifaction'
+import CongratulationBoom from './widget-congratulation-boom'
+import NotifactionBar from './widget-notifaction-bar'
 
 /**
  * 核心模块:
@@ -23,8 +23,8 @@ class App extends React.Component {
         return <div>
             <ChangelogList />
             <ChangelogTrigger />
-            <CongratuBoom />
-            <ReleaseNotify />
+            <CongratulationBoom />
+            <NotifactionBar />
         </div>
     }
 }
