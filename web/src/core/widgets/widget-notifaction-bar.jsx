@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Flex, Box, Text, Link } from 'rebass'
 
 import RichText from '../../components/rich-text'
+import Beacon from '../../components/beacon'
 
 const _modes = {
     embed: {
@@ -21,22 +22,40 @@ const ReleaseNotify = ({
     className,
     disable, mode, children,
     background,
-    primaryColor = '#4441E1',
+    primaryColor = '#4441E1', // '#ff813f', // '#55bc8a'
     pillColor, textColor, anchorColor,
     position,
+    content = '我们又发布新功能啦！',
+    leftTitle = '新版本',
+    rightArrow = '🚀', // '👉', // '➤',
+    zIndex = 9990,
 }) => {
     if (disable) return null
-    const classes = [
-        
-    ]
 
     const _classWraper = {
-        top: 28,
+        position: 'fixed',
+        top: 10,
+        justifyContent: 'center',
+        width: '100%',
+        textAlign: 'center',
     }
 
     const _classContainer = {
-        background: background || primaryColor + '2F',
+        // flex p-1 rounded-full no-underline hover:no-underline
+        display: 'flex',
+        padding: '0.25rem',
+        borderRadius: '380px',
+        textDecoration: 'none',
+        // TODO: compute light color from primary color
+        background: background || '#E6E6FF', // primaryColor + '2F',
         alignItems: 'center',
+        userSelect: 'none',
+        position: 'relative',
+        zIndex: zIndex,
+        // transition: 'all ease-in .2s',
+        '&:hover': {
+            textDecoration: 'none',
+        }
     }
 
     const _classPill = {
@@ -52,24 +71,28 @@ const ReleaseNotify = ({
         color: primaryColor,
         fontSize: '13px',
         fontWeight: '500',
+        maxWidth: '250px',
+        whiteSpace: 'nowrap',
+        '> *': {
+            textOverflow: 'ellipsis',
+            overflow: 'hidden'
+        }
     }
 
     const _classAnchor = {
         color: primaryColor,
         marginLeft: '10px',
+        marginRight: '5px',
         fontWeight: 'bold',
-        '&:hover': {
-            marginLeft: '12px'
-        }
     }
 
-    return <Flex className={`fixed justify-center w-full align-center`} sx={_classWraper}>
-        <Link className={`flex p-1 border rounded-full no-underline hover:no-underline`} sx={_classContainer}>
-            <Text className={`bar_pill`} fontWeight="bold" sx={_classPill}>新版本</Text>
+    return <Flex className={className} sx={_classWraper}>
+        <Link sx={_classContainer}>
+            <Text className={`bar_pill`} fontWeight="bold" sx={_classPill}>{leftTitle}</Text>
             <Box className={`bar_content`} sx={_classContent}>
-                <RichText content={'内容'}/>
+                <RichText content={content}/>
             </Box>
-            <Text className={`bar_anchor`} sx={_classAnchor}>→</Text>
+            <Text className={`bar_anchor`} sx={_classAnchor}>{rightArrow}</Text>
         </Link>
     </Flex>
 }
