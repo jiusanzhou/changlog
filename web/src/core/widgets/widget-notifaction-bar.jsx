@@ -19,22 +19,23 @@ const _modes = {
 }
 
 const ReleaseNotify = ({
-    className,
-    disable, mode, children,
-    background,
-    primaryColor = '#4441E1', // '#ff813f', // '#55bc8a'
-    pillColor, textColor, anchorColor,
-    position,
     content = '我们又发布新功能啦！',
     leftTitle = '新版本',
-    rightArrow = '🚀', // '👉', // '➤',
+    rightIcon = '🚀', // '👉', // '➤',
+    disable,
+    mode,
+    background,
+    primaryColor = '#4441E1', // '#ff813f', // '#55bc8a'
     zIndex = 9990,
+    pillColor, textColor, anchorColor,
+    position,
+    className,
 }) => {
     if (disable) return null
 
     const _classWraper = {
         position: 'fixed',
-        top: 10,
+        top: 16,
         justifyContent: 'center',
         width: '100%',
         textAlign: 'center',
@@ -92,15 +93,18 @@ const ReleaseNotify = ({
             <Box className={`bar_content`} sx={_classContent}>
                 <RichText content={content}/>
             </Box>
-            <Text className={`bar_anchor`} sx={_classAnchor}>{rightArrow}</Text>
+            <Text className={`bar_anchor`} sx={_classAnchor}>{rightIcon}</Text>
         </Link>
     </Flex>
 }
 
 ReleaseNotify.propTypes = {
-    className: PropTypes.string,
+    content: PropTypes.string,
+    leftTitle: PropTypes.string,
+    rightIcon: PropTypes.string,
     disable: PropTypes.bool,
     mode: PropTypes.oneOf(Object.keys(_modes)),
+    className: PropTypes.string,
 }
 
 ReleaseNotify.defaultProps = {
