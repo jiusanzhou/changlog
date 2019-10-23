@@ -19,17 +19,17 @@ const _modes = {
 }
 
 const ReleaseNotify = ({
-    content = '我们又发布新功能啦！',
-    leftTitle = '新版本',
-    rightIcon = '🚀', // '👉', // '➤',
+    content,
+    leftTitle,
+    rightIcon,
     disable,
     mode,
+    className,
     background,
-    primaryColor = '#4441E1', // '#ff813f', // '#55bc8a'
-    zIndex = 9990,
+    primaryColor,
+    zIndex,
     pillColor, textColor, anchorColor,
     position,
-    className,
 }) => {
     if (disable) return null
 
@@ -105,11 +105,24 @@ ReleaseNotify.propTypes = {
     disable: PropTypes.bool,
     mode: PropTypes.oneOf(Object.keys(_modes)),
     className: PropTypes.string,
+    primaryColor: PropTypes.string,
+    zIndex: PropTypes.number,
+    // TODO:
+    // pillColor, textColor, anchorColor,
+    // position,
 }
 
 ReleaseNotify.defaultProps = {
+    content: '我们又发布新功能啦！',
+    leftTitle: '新版本',
+    rightIcon: '🚀', // '👉', // '➤',
     disable: false,
-    mode: 'embed',
+    // mode,
+    // background,
+    primaryColor: '#4441E1', // '#ff813f', // '#55bc8a'
+    zIndex: 9990,
+    // pillColor, textColor, anchorColor,
+    // position,
 }
 
 export default ReleaseNotify
