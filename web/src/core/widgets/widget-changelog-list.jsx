@@ -7,12 +7,13 @@ import { Popover } from '@blueprintjs/core'
 
 import ChangelogItem from './widget-changelog-item'
 
-const __items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-
 const ChangelogList = ({
     title = '更新日志',
     mode,
     color = '#4441E1',
+    releases = [],
+    showPreRelease = true,
+    showDraft = false,
 }) => {
 
     const _classWraper = {
@@ -24,7 +25,7 @@ const ChangelogList = ({
         background: '#fff',
         minWidth: 320,
         minHeight: 400,
-        maxHeight: '40vh',
+        maxHeight: '60vh',
         boxShadow: '0 0 1px rgba(99, 114, 130, 0.32), 0 8px 16px rgba(27, 39, 51, 0.08)',
         borderRadius: 2,
     }
@@ -66,7 +67,7 @@ const ChangelogList = ({
             <Text><h3>{title}</h3></Text>
         </Box>
         <Box sx={_classContainer}>
-            {__items.map((item, i) => <ChangelogItem key={`__${i}`} {...item} />)}
+            {releases.map((item, i) => <ChangelogItem key={`__${i}`} {...item} />)}
         </Box>
         <Box sx={_classFooter}>
             <Link target="_blank" href="https://labs.zoe.im/changelog">

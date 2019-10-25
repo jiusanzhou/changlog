@@ -59,17 +59,9 @@ const ReleaseNotify = ({
         }
     }
 
-    const _classPill = {
-        background: primaryColor,
-        color: '#fff',
-        fontSize: '10px',
-        padding: '3px 4px',
-        borderRadius: '380px',
-        marginRight: '10px',
-    }
-
     const _classContent = {
         color: primaryColor,
+        marginLeft: '10px',
         fontSize: '13px',
         fontWeight: '500',
         maxWidth: '250px',
@@ -89,7 +81,7 @@ const ReleaseNotify = ({
 
     return <Flex className={className} sx={_classWraper}>
         <Link sx={_classContainer}>
-            <Text className={`bar_pill`} fontWeight="bold" sx={_classPill}>{leftTitle}</Text>
+            <Box variant='badge'>{leftTitle}</Box>
             <Box className={`bar_content`} sx={_classContent}>
                 <RichText content={content}/>
             </Box>
