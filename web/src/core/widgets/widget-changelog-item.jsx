@@ -5,12 +5,14 @@ import { Flex, Box, Link, Text } from 'rebass'
 
 import ReactMarkdown from 'react-markdown'
 
+import { toNow } from '../../utils/data-time'
+
 const ChangelogItem = ({ 
     // id,
     tag,
     name,
     title,
-    abstract = 'It’s extremely useful for using design system components to render markdown and weaving interactive components in with existing markdown.',
+    abstract,
     category,
     body,
     draft,
@@ -25,22 +27,33 @@ const ChangelogItem = ({
 }) => {
 
     const _classContainer = {
-        display: 'flex',
-        flexDirection: 'column',
         padding: '7px 15px',
         borderLeft: `3px solid ${borderColor}`,
         marginBottom: 10,
-        maxWidth: '400px'
+        maxWidth: 400
+    }
+
+    const _classMeta = {
+        marginRight: 10,
+    }
+
+    const _classContent = {
+        flex: '1 1 80%',
     }
 
     const _classTitle = {
-        marginLeft: 10,
         lineHeight: '14px',
         fontSize: '14px',
         flex: 1,
     }
 
     const _classTag = {}
+
+    const _classTime = {
+        fontSize: 10,
+        fontColor: '#969696',
+        marginTop: '3px',
+    }
 
     if ( prerelease ) {
         _classTag.background = 'unset'
@@ -54,15 +67,20 @@ const ChangelogItem = ({
         _classTag.borderColor = '#cb2431'
     }
 
-    return <Box sx={_classContainer}>
-        <Link target="_blank" href={url}>
-            <Flex>
-                <Box variant='badge' sx={_classTag}>{tag}</Box>
-                <Text fontWeight='bold' sx={_classTitle}>{name||title}</Text>
-            </Flex>
-        </Link>
-        <Text>{abstract}</Text>
-    </Box>
+    return <Flex sx={_classContainer}>
+        <Box sx={_classMeta}>
+            <Box variant='badge' sx={_classTag}>{tag}</Box>
+            <Text sx={_classTime}>{toNow(published_at)}</Text>
+        </Box>
+        <Box sx={_classContent}>
+            <Text fontWeight='bold' sx={_classTitle}>
+                <Link target="_blank" href={url}>{name||title}</Link>
+            </Text>
+            <Box>
+                {/* <ReactMarkdown source={body} /> */}
+            </Box>
+        </Box>
+    </Flex>
 }
 
 export default ChangelogItem
