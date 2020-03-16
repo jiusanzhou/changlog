@@ -8367,6 +8367,14 @@ body {
 
 /* TODO: */
 
+/* background-image: linear-gradient(to left,#24aef2,
+#f224f2);
+background-size: 150% 150%;
+-webkit-animation: bannerBackground 12s ease infinite;
+animation: bannerBackground 12s ease infinite; */
+
+/* TODO: */
+
 @keyframes beaconA {
   100% {
     transform: scale(1.5);

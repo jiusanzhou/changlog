@@ -83,6 +83,10 @@ class GithubSource {
         })
     }
 
+    // load more
+
+    // get detail
+
     latest () {
 
     }
