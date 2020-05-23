@@ -5,8 +5,8 @@ import { extractMeta } from '../utils/markdown'
 
 const _baseApi = "https://api.github.com/repos"
 
-const _apiList = ( repo ) => `${_baseApi}/${repo}/releases`
-const _apiLatest = ( repo ) => `${_apiList(repo)}/latest`
+const _apiList = (repo) => `${_baseApi}/${repo}/releases`
+const _apiLatest = (repo) => `${_apiList(repo)}/latest`
 
 const println = (msg) => console.log(`[SOURCE] [GH] ${msg}`)
 
@@ -24,7 +24,7 @@ class GithubSource {
     _apiUrlLatest
 
     constructor(repo, options = {}) {
-        if ( !repo ) throw("不合法 repo: " + repo)
+        if (!repo) throw ("不合法 repo: " + repo)
         this._repo = repo
         this._options = options
 
@@ -33,7 +33,7 @@ class GithubSource {
     }
 
     // convert data to source
-    _userFromJson ({id, login, name, avatar_url, html_url}) {
+    _userFromJson({ id, login, name, avatar_url, html_url }) {
         return {
             id,
             username: login,
@@ -62,24 +62,26 @@ class GithubSource {
         }
     }
 
-    static get type () {
+    static get type() {
         return this._type
     }
 
-    get name () {
+    get name() {
         return this._name
     }
-    
-    list () {
-        println("LIST ...: " + this._apiUrlList)
+
+    // page: 1, limit: 10
+    list(params) {
+        let { page = 1, limit = 10 } = params || {}
+        println("LIST: " + this._apiUrlList)
         return new Promise((resolve, reject) => {
             fetch(this._apiUrlList)
-            .then((res) => {
-                return res.json()
-            })
-            .then((data) => {
-                resolve(data.map(i => this._releaseFromJson(i)))
-            })
+                .then((res) => {
+                    return res.json()
+                })
+                .then((data) => {
+                    resolve(data.map(i => this._releaseFromJson(i)))
+                })
         })
     }
 
@@ -87,11 +89,11 @@ class GithubSource {
 
     // get detail
 
-    latest () {
+    latest() {
 
     }
 
-    isLatest () {
+    isLatest() {
 
     }
 }
